@@ -18,16 +18,28 @@ fun main(){
         this
     }
 
+    val jamongade = Ade().apply {
+
+    }
+
+    val honeyblack = HoneyBlack().apply {
+
+    }
+
+
+
     americano.getMenu() // 4000원 Vanilla Hot 아메리카노 나왔습니다!
     latte.getMenu()
     vanillalatte.getMenu()
+    jamongade.getMenu()
+    honeyblack.getMenu()
 
 }
 
 
 
 interface Coffee{
-    val price : Int
+    var price : Int
     val name : String
 
     fun getMenu()
@@ -38,11 +50,10 @@ interface Coffee{
 enum class Temperature{
     Hot , Ice
 }
+
 enum class CoffeeOption{
     Vanilla, Almond, None
 }
-
-
 
 
 abstract class CoffeeMenu :Coffee{
@@ -64,23 +75,54 @@ abstract class CoffeeMenu :Coffee{
 
 }
 
-
-
-
 class Americano() : CoffeeMenu() {
     override val name : String = "아메리카노"
-    override val price : Int = 4000
+    override var price : Int = 4000
 }
 
 class Latte() : CoffeeMenu() {
     override val name : String = "카페 라뗴"
-    override val price : Int = 4000
+    override var price : Int = 4000
 }
 
 class VanillaLatte() : CoffeeMenu(){
     override val name : String = "바닐라 라떼"
-    override val price : Int = 4000
+    override var price : Int = 4000
+
 }
+
+class VanillaCreamF() : CoffeeMenu(){
+    override val name : String = "바닐라 크림 프라푸치노"
+    override var price : Int = 4000
+
+}
+
+open class Jamong() : CoffeeMenu(){
+
+    override val name : String = "자몽"
+    override var price : Int = 4000
+
+    override fun getMenu() {
+        println("${price} 원 ${name}나왔습니다!")
+    }
+
+
+}
+
+class Ade() : Jamong() {
+    override val name: String
+        get() = "자몽 에이드"
+    override var price : Int = 5000
+
+}
+
+class HoneyBlack() : Jamong(){
+    override val name: String
+        get() = "자몽 허니 블랙티"
+    override var price : Int = 5000
+}
+
+
 
 
 
