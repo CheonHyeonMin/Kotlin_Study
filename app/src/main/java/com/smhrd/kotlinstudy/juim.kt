@@ -1,5 +1,7 @@
 package com.smhrd.kotlinstudy
 
+import java.sql.DriverManager.println
+
 
 fun main() {
 
