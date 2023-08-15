@@ -4,23 +4,31 @@ fun main(){
     val americano = Americano().apply {
         setTemperature(Temperature.Hot)
         setVanilliaCream(CoffeeOption.Vanilla)
+
     }
 
-    val latte = Latte(4000, "바닐라라떼").apply {
+    val latte = Latte().apply {
         setTemperature(Temperature.Ice)
         setVanilliaCream(CoffeeOption.None)
+    }
 
+    val vanillalatte = VanillaLatte().run {
+        setTemperature(Temperature.Ice)
+        setVanilliaCream(CoffeeOption.None)
+        this
     }
 
     americano.getMenu() // 4000원 Vanilla Hot 아메리카노 나왔습니다!
     latte.getMenu()
+    vanillalatte.getMenu()
+
 }
 
 
 
 interface Coffee{
-    var price : Int
-    var name : String
+    val price : Int
+    val name : String
 
     fun getMenu()
 }
@@ -30,7 +38,6 @@ interface Coffee{
 enum class Temperature{
     Hot , Ice
 }
-
 enum class CoffeeOption{
     Vanilla, Almond, None
 }
@@ -52,18 +59,6 @@ abstract class CoffeeMenu :Coffee{
     }
 
     override fun getMenu() {
-
-        selectTem = when(selectTem){
-            Temperature.Hot -> Temperature.Hot
-            Temperature.Ice -> Temperature.Ice
-        }
-
-        selectOption = when(selectOption){
-            CoffeeOption.Vanilla -> CoffeeOption.Vanilla
-            CoffeeOption.Almond -> CoffeeOption.Almond
-            CoffeeOption.None -> CoffeeOption.None
-        }
-
         println("${price}원 ${selectOption} ${selectTem}${name}나왔습니다!")
     }
 
@@ -73,21 +68,19 @@ abstract class CoffeeMenu :Coffee{
 
 
 class Americano() : CoffeeMenu() {
-
-    override var price: Int
-        get() = 4000
-        set(value) {
-
-        }
-    override var name: String
-        get() = "아메리카노"
-        set(value) {
-
-        }
-
+    override val name : String = "아메리카노"
+    override val price : Int = 4000
 }
 
-class Latte(override var price: Int, override var name: String) : CoffeeMenu() {
-
+class Latte() : CoffeeMenu() {
+    override val name : String = "카페 라뗴"
+    override val price : Int = 4000
 }
+
+class VanillaLatte() : CoffeeMenu(){
+    override val name : String = "바닐라 라떼"
+    override val price : Int = 4000
+}
+
+
 
