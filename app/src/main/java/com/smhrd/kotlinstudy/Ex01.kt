@@ -16,20 +16,20 @@ fun main(){
         setVanilliaCream(CoffeeOption.None)
         this
     }
-//
-//    val jamongade = Ade().apply {
-//
-//    }
-//
-//    val honeyblack = HoneyBlack().apply {
-//
-//    }
-//
+
+    val jamongade = JamongAde().apply {
+
+    }
+
+    val honeyblack = JamongHoneyB().apply {
+
+    }
+
     americano.getMenu() // 4000원 Vanilla Hot 아메리카노 나왔습니다!
     latte.getMenu()
     vanillalatte.getMenu()
-//    jamongade.getMenu()
-//    honeyblack.getMenu()
+    jamongade.getMenu()
+    honeyblack.getMenu()
 
 }
 
@@ -126,8 +126,7 @@ enum class CoffeeOption{
 }
 
 abstract class Coffee : Menu{
-    override var price : Int =0
-    override val name : String = ""
+
 
     open var tem : Temperature? = Temperature.Hot
     open var option : CoffeeOption? = CoffeeOption.Vanilla
@@ -148,11 +147,21 @@ abstract class Coffee : Menu{
 }
 
 abstract class Tea : Menu{
-    override var price : Int =0
-    override val name : String = ""
 
 
+    override fun getMenu() {
+        println("${price} 원 ${name}나왔습니다.")
+    }
 }
+
+abstract class Ade : Menu{
+    override fun getMenu() {
+        println("${price} 원 ${name}나왔습니다.")
+    }
+}
+
+
+
 
 class Americano() : Coffee() {
     override var price: Int = 4000
@@ -177,12 +186,33 @@ class Latte() : Coffee(){
 class VanillaLatte() : Coffee(){
     override val name : String = "바닐라 라떼"
     override var price : Int = 4000
+
+    override fun getMenu() {
+        println("${price}원 ${tem} ${name} 나왔습니다.")
+    }
+
 }
 
 class VanillaCreamF() : Coffee(){
     override val name : String = "바닐라 크림 프라푸치노"
     override var price : Int =  4000
+
+    override fun getMenu() {
+        println("${price}원 ${tem} ${name} 나왔습니다.")
+    }
 }
+
+class JamongAde() : Ade(){
+    override val name: String = "자몽 에이드"
+    override var price: Int = 4000
+}
+
+class JamongHoneyB() : Tea(){
+    override val name : String = "자몽 허니 블랙티"
+    override var price : Int = 4000
+}
+
+
 
 
 
