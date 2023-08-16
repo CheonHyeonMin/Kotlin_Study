@@ -154,6 +154,7 @@ abstract class Tea : Menu{
     }
 }
 
+
 abstract class Ade : Menu{
     override fun getMenu() {
         println("${price} 원 ${name}나왔습니다.")
